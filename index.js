@@ -2,6 +2,7 @@
 import express from "express";
 import { connectionDB } from "./DB/connection.js";
 import UserRouter from "./src/modules/User/user.routers.js";
+import CarRouter from "./src/modules/Car/car.routers.js";
 
 const app = express();
 const port = 3000;
@@ -10,6 +11,7 @@ app.use(express.json());
 connectionDB();
 
 app.use("/user", UserRouter);
+app.use("/car", CarRouter);
 
 app.get("/", (req, res) => res.send("Hello World"));
 
