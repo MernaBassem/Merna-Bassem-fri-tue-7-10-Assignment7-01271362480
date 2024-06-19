@@ -1,0 +1,471 @@
+{
+	"info": {
+		"_postman_id": "7c5699cf-cacc-4fb8-a4c3-d02dfa84ec0f",
+		"name": "car_rental_system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32953180"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "SignUp USer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"roma Bassem\" ,\r\n    \"email\" : \"roma@gmail.com\",\r\n    \"password\" : \"123\",\r\n    \"phoone\":\"01271362480\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"merna@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3OTM4NTV9.N178VLy4zWkQh632V8oVeNaCmFj2ASfed-PYzXDVPVg"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/getAllUser",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"getAllUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specificUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/specificUserById/6672a3543e3fb49c1383db3d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"specificUserById",
+								"6672a3543e3fb49c1383db3d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyYTM1NDNlM2ZiNDljMTM4M2RiMmQiLCJpYXQiOjE3MTg3OTc3Njl9.fDsHetqYH9pY1SrvM5KDjPxDe5sR0MVoD5Z4x1CMPko"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/deleteAccount",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"deleteAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Car",
+			"item": [
+				{
+					"name": "addCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"BsMW\",\r\n    \"model\":\"2010\",\r\n    \"rental_status\":\"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/car/addCar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"addCar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specificCarById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/specificCarById/6672d4e5db5e96ef65c68349",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"specificCarById",
+								"6672d4e5db5e96ef65c68349"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All Car",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/deleteCar/6672d33ea4e51d18909a088d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"deleteCar",
+								"6672d33ea4e51d18909a088d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n\"name\":\"BMW\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/car/updateCar/6672d33ba4e51d18909a088c",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"updateCar",
+								"6672d33ba4e51d18909a088c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental",
+			"item": [
+				{
+					"name": "Add Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n {\r\n    \"carId\":\"6672d33ba4e41d18909a088c\",\r\n    \"UserId\":\"6672a6625e969f63daed0b8f\",\r\n    \"rental_date\":\"2024-4-24\",\r\n    \"return_date\":\"2025-5-24\"\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/rental/addRental",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rental",
+								"addRental"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rental",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n {\r\n   \r\n    \"carId\":\"6672d419c49c96fe50071c9e\",\r\n    \"rental_date\":\"2024-5-24\",\r\n    \"return_date\":\"2026-5-24\"\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/rental/UpdateRental/6673090f0d3fa1b2898ed066",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rental",
+								"UpdateRental",
+								"6673090f0d3fa1b2898ed066"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Rental",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rental/deleteRental/6673135bba05a89cff9b2ecb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rental",
+								"deleteRental",
+								"6673135bba05a89cff9b2ecb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Rental",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rental/getAllRental",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rental",
+								"getAllRental"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specific Rental",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "availableCarSpecificModel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/availableCarSpecificModel?model=Honda",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"availableCarSpecificModel"
+							],
+							"query": [
+								{
+									"key": "model",
+									"value": "Honda"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AllCarSpecificModel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/AllCarSpecificModel?model=Honda",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"AllCarSpecificModel"
+							],
+							"query": [
+								{
+									"key": "model",
+									"value": "Honda"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarSpecificModelOrRentedOrAvailable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/getCarSpecificModelOrRented?rental_status=available",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"getCarSpecificModelOrRented"
+							],
+							"query": [
+								{
+									"key": "rental_status",
+									"value": "available"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarSpecificModelAndRentedOrAvailable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/car/getCarSpecificModelAndRentedOrAvailable?rental_status=available&model=Toyota",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"car",
+								"getCarSpecificModelAndRentedOrAvailable"
+							],
+							"query": [
+								{
+									"key": "rental_status",
+									"value": "available"
+								},
+								{
+									"key": "model",
+									"value": "Toyota"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
