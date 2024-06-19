@@ -16,5 +16,10 @@ router.get(
   "/getCarSpecificModelOrRented",
   CarController.getCarSpecificModelOrRented
 );
+router.get(
+  "/getCarSpecificModelAndRentedOrAvailable",
+  CarController.getCarSpecificModelAndRentedOrAvailable
+);
+
 
 export default router;

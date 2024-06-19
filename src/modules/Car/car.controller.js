@@ -221,3 +221,36 @@ export const getCarSpecificModelOrRented = async (req, res, next) => {
     return res.status(500).json({ message: error.message });
   }
 };
+//------------------------------------------------------
+//4-- Get Available Cars of Specific Models or Rented Cars of a Specific Model
+
+export const getCarSpecificModelAndRentedOrAvailable = async (req, res, next) => {
+  try {
+    const { model, rental_status } = req.query;
+
+    // Check if model or rental_status parameter exists
+    if (!model || !rental_status) {
+      return res.status(400).json({
+        message: "Model and rental_status query parameter are required.",
+      });
+    }
+
+      // Find cars with the specified model
+      const cars = await Car.find({ model,rental_status }).toArray();
+
+      if (cars.length === 0) {
+        return res
+          .status(200)
+          .json({
+            message: `No Car in Model ${model} Or No Car in ${rental_status} `,
+          });
+      }
+
+      // Return the found cars
+      return res.status(200).json({ Model: model, AllCar: cars });
+    
+
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
