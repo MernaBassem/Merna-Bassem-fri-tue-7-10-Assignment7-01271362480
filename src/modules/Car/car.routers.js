@@ -12,5 +12,9 @@ router.get(
   "/availableCarSpecificModel",
   CarController.availableCarSpecificModel
 );
+router.get(
+  "/getCarSpecificModelOrRented",
+  CarController.getCarSpecificModelOrRented
+);
 
 export default router;
