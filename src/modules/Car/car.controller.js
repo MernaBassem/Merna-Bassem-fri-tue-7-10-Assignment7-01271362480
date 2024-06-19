@@ -49,3 +49,69 @@ export const getAllCar = async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 };
+//---------------------------------------------------------------
+//4- Update Car
+export const updateCar = async (req, res, next) => {
+  try {
+    const { name, model, rental_status } = req.body;
+    const { id } = req.params;
+    // Create an update object with only the fields that are provided
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (model) updateFields.model = model;
+    if (rental_status) updateFields.rental_status = rental_status;
+
+
+    const currentCar = await Car.findOne({
+      _id: new ObjectId(id)
+    });
+    if (!currentCar) {
+      return res.status(404).json({ message: "Car not found." });
+    }
+
+    // Use the current values if new values are not provided
+    const newName = name || currentCar.name;
+    const newModel = model || currentCar.model;
+
+    // check the name and model together unique
+    const existingCar = await Car.findOne({
+      _id: { $ne: id },
+      name: newName,
+      model: newModel,
+    });
+
+    if (existingCar) {
+      return res
+        .status(400)
+        .json({ message: "Car with this name and model already exists." });
+    }
+
+    const result = await Car.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: updateFields }
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Car not found." });
+    }
+
+    return res.status(200).json({ message: "Car updated successfully." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+//--------------------------------------------------------------
+//5- Delete Car
+export const deleteCar = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const car = await Car.deleteOne({ _id: new ObjectId(id) });
+    if (car.deletedCount === 0) {
+      return res.status(404).json({ message: "Car not found." });
+    }
+    return res.status(200).json({ message: "This Car has been deleted." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
