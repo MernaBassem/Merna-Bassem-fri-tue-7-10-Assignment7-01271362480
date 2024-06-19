@@ -38,3 +38,14 @@ export const specificCarById = async (req, res, next) => {
     return res.status(400).json({ message: error.message });
   }
 };
+//----------------------------------------------------------------
+// 3- get all car
+
+export const getAllCar = async (req, res, next) => {
+  try {
+    const car = await Car.find().toArray();
+    res.status(200).json({ Cars: car });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
