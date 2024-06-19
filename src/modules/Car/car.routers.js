@@ -7,6 +7,7 @@ router.get("/specificCarById/:id", CarController.specificCarById);
 router.get("/getAllCar", CarController.getAllCar);
 router.put("/updateCar/:id", CarController.updateCar);
 router.delete("/deleteCar/:id", CarController.deleteCar);
+router.get("/AllCarSpecificModel", CarController.AllCarSpecificModel);
 router.get(
   "/availableCarSpecificModel",
   CarController.availableCarSpecificModel

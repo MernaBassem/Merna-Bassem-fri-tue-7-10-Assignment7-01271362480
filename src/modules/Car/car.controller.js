@@ -116,6 +116,32 @@ export const deleteCar = async (req, res, next) => {
   }
 };
 //-------------------------------------------------------
+export const AllCarSpecificModel = async (req, res, next) => {
+  try {
+    const { model } = req.query;
+
+    // Check if model parameter exists
+    if (!model) {
+      return res
+        .status(400)
+        .json({ message: "Model query parameter is required." });
+    }
+
+    // Find cars with the specified models available
+    const cars = await Car.find({
+      model,
+     
+    }).toArray();
+    if (cars.length === 0) {
+      return res.status(200).json({ message: `No Car in Model ${model}` });
+    }
+    // Return the found cars
+    return res.status(200).json(cars);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+//-------------------------------------------------------
 // all car available in specific model
 // /2- Get Available Cars of a Specific Model.
 
