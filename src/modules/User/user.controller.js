@@ -88,9 +88,34 @@ export const getAllUser = async (req, res, next) => {
 };
 //--------------------------------------------------------------------
 
+//5- Update account
+export const updateAccount = async (req, res, next) => {
+  try {
+    const { name, phone } = req.body;
+
+    // Create an update object with only the fields that are provided
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (phone) updateFields.phone = phone;
+
+
+    const result = await User.updateOne(
+      { _id: new ObjectId(req.userId) },
+      { $set: updateFields }
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    return res.status(200).json({ message: "Account updated successfully." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
 //---------------------------------------------------------------
 
-// Delete account
+//6- Delete account
 export const deleteAccount = async (req, res, next) => {
   try {
     const user = await User.deleteOne({ _id: new ObjectId(req.userId) });
