@@ -197,10 +197,13 @@ export const getCarSpecificModelOrRented = async (req, res, next) => {
       // Return the found cars
       return res.status(200).json({ Model: model, AllCar: cars });
     }
+    const lowerCaseRentalStatus = rental_status.toLowerCase();
 
-    if (rental_status === "rented" || rental_status === "available") {
+    if (
+      lowerCaseRentalStatus === "rented" ||
+      lowerCaseRentalStatus === "available"
+    ) {
       // Find cars with the specified rental_status
-      const lowerCaseRentalStatus = rental_status.toLowerCase();
 
       const cars = await Car.find({
         rental_status: { $regex: new RegExp(lowerCaseRentalStatus, "i") },
