@@ -10,5 +10,6 @@ router.post("/login", UserController.login);
 router.post("/logout", authenticate , UserController.logout);
 router.get("/getAllUser", UserController.getAllUser);
 router.get("/specificUserById/:id", UserController.specificUserById);
+router.delete("/deleteAccount", authenticate, UserController.deleteAccount);
 
 export default router;

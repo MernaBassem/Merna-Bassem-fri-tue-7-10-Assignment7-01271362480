@@ -47,7 +47,7 @@ export const login = async (req, res, next) => {
     }
     // after check email
     // check Password is correct
-    const token = jwt.sign({ userId: user.id }, "your_secret_key");
+    const token = jwt.sign({ userId: user._id }, "your_secret_key");
     return res.status(201).json({ token });
   }
 };
@@ -84,5 +84,21 @@ export const getAllUser = async (req, res, next) => {
     res.status(200).json({ Users: user });
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+//--------------------------------------------------------------------
+
+//---------------------------------------------------------------
+
+// Delete account
+export const deleteAccount = async (req, res, next) => {
+  try {
+    const user = await User.deleteOne({ _id: new ObjectId(req.userId) });
+    if (user.deletedCount === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    return res.status(200).json({ message: "Your account has been deleted." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
   }
 };
