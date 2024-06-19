@@ -151,3 +151,29 @@ export const deleteRental = async (req, res, next) => {
     return res.status(400).json({ message: error.message });
   }
 };
+//----------------------------------------------------------------
+// 4- get all Rental
+
+export const getAllRental = async (req, res, next) => {
+  try {
+    const rental = await Rental.find().toArray();
+    res.status(200).json({ AllRental: rental });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+//----------------------------------------------------------------
+//5- Get a specific Rental.
+
+export const specificRentalById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const rental = await Rental.findOne({ _id: new ObjectId(id) });
+    if (!rental) {
+      return res.status(404).json({ message: "Rental not found" });
+    }
+    return res.status(200).json({ rental });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
