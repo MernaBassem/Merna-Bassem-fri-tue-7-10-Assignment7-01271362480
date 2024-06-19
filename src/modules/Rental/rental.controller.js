@@ -60,8 +60,8 @@ export const UpdateRental = async (req, res, next) => {
     const rentalData = await Rental.findOne({
       _id: new ObjectId(id),
     });
-    console.log("rental Dataaaaaaaaa",rentalData)
-    if (rentalData==null) {
+    console.log("rental Dataaaaaaaaa", rentalData);
+    if (rentalData == null) {
       return res.status(404).json({ message: "rental not found." });
     }
 
@@ -119,6 +119,34 @@ export const UpdateRental = async (req, res, next) => {
     return res
       .status(201)
       .json({ message: "Successfully Update Rental ", UpdateRental });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+//------------------------------------------------------------
+//3- delete rental
+
+//5- Delete Car
+export const deleteRental = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const rentalData = await Rental.findOne({
+      _id: new ObjectId(id),
+    });
+    if (rentalData === null) {
+      return res.status(404).json({ message: "rental not found." });
+    }
+    console.log("rentalDataaaa", rentalData);
+    const rental = await Rental.deleteOne({ _id: new ObjectId(id) });
+    console.log("rentallllllll", rental);
+    const updateCar = await Car.updateOne(
+      {
+        _id: new ObjectId(rentalData.carId),
+      },
+      { $set: { rental_status: "available" } }
+    );
+    return res.status(200).json({ message: "This rental has been deleted." });
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
